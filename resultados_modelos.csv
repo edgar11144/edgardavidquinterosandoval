@@ -1,0 +1,6 @@
+modelo,Captura @10% celdas,Captura @1% celda-días
+Historial,0.5363733,0.13360539
+Regresión de Poisson,0.57274663,0.12934706
+Random Forest,0.5764727,0.14052519
+XGBoost,0.58073103,0.13981546
+Máximo posible (sabiendo 2024),0.6265082,
