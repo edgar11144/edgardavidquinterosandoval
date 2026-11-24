@@ -1,3 +1,58 @@
 Tableau
 
 https://help.tableau.com/current/online/en-us/portal_dashboard.htm?utm_source=chatgpt.com
+
+
+---
+schema_version: "1"
+id: a0ba9da1061c0e2eb78fe026e3152ac72fd42e829a88d824182c65472bc93386
+title: Dashboard-based Custom Portals
+collection: tableau
+version: current
+locale: en-us
+portal_url: https://docs.salesforce.com/tableau/current/en-us/online/portal_dashboard.md
+canonical_url: https://help.tableau.com/current/online/en-us/portal_dashboard.htm
+source_site: help.tableau.com
+content_type: documentation
+content_hash: 8fdaa147c1c655d6de9402311d6ae67af2d4a7a5c649f2f7df0532fe06fddb49
+description: Build a dashboard-based custom portal to create a branded content experience.
+---
+[Skip to main content](#main-content)
+
+# Dashboard-based Custom Portals
+
+**Note:** This overview was inspired by the work of Tableau Visionary Mark Jackson. For more details about the process, [check out Mark's blog](http://ugamarkj.blogspot.sg/2013/12/customizing-tableau-server-experience.html).
+
+The [standard Tableau Cloud or Tableau Server interface](https://help.tableau.com/current/pro/desktop/en-us/navigating.htm) works great for many organizations, but if you want to create a company-branded experience and don't have API developer skills, consider creating a custom portal based on a Tableau dashboard. A custom portal lets you organize content around specific departments or job roles, and you can even incorporate training that helps people interact with data more fully. As the volume of Tableau content grows, a custom portal guides your users directly to the data they need, while providing ready access to related views and Tableau Cloud search so they can easily explore further.
+
+## Sketch out a portal design
+
+Begin outside of Tableau, on paper or in a wireframing application. Consider the structure of your organization and the number of Tableau views that apply to each group of users. Do you simply need one level of navigation that points immediately to content? Or might you need to start with a main page that provides navigational links for separate groups of users or report types, followed by a second level with related dashboards and views?
+
+![A diagram that illustrates the interconnectedness of medical personnel, facilities, and their associated data.](/tableau/current/en-us/online/en-us/Img/portal_sketch.png)
+
+After you get buy-in on your design from key stakeholders and data consumers, you're ready to move on to the next phase.
+
+## Gather images for logos and navigation elements
+
+Start thinking about images while refining your initial mockup, and then gather them from libraries of clip-art or approved brand graphics, or create them from scratch in an application like Photoshop or SnagIt. PowerPoint can also be a good source if you plan to create navigation thumbnails of common chart types.
+
+![Health Group portal logo.](/tableau/current/en-us/online/en-us/Img/portal_logo.png)
+
+## Lay out text, images, and selected sheets on a dashboard
+
+Create a workbook with a dashboard for the portal, using a [tiled layout](https://help.tableau.com/current/pro/desktop/en-us/dashboards_organize_floatingandtiled.htm#Tiled_vs._Floating_Layouts) for more predictable positioning and scaling of elements on different devices. Then start adding Text and Image objects, as well as any sheets for data views you want to highlight right up front in your portal. To refine spacing between these dashboard elements, insert Blank objects and adjust their size. For more information, see [Create a Dashboard](https://help.tableau.com/current/pro/desktop/en-us/dashboards_create.htm#Add_objects).
+
+## Link dashboard elements to content
+
+If you have a second level of navigation in your portal, use [filter actions](https://help.tableau.com/current/pro/desktop/en-us/actions_filter.htm) to point to a secondary dashboard from the main one. To create links that directly open data views, right-click Image objects and choose Set URL. (In our example below, each colored arrow and accompanying text is an image that links to a view URL.) You can even point to empty views with preloaded data sources, encouraging users to create new Tableau content in the web-authoring workspace.
+
+**Tip:** To add hyperlinks to text objects, include the full URL (for example, `http://www.tableau.com`).
+
+![A web page displaying a data portal for a health group, providing the ability to explore geo data and create custom views.](/tableau/current/en-us/online/en-us/Img/portal_final.png)
+
+## Publish, test, and refine your portal
+
+Publish the workbook to your server and distribute the dashboard URL to your users. Portal design, like data analysis itself, is a cyclical process. Now that your portal is out in the wild, start gathering user feedback so you can continuously improve the experience
+
+**Tip:** As a finishing touch, hide the Tableau toolbar to give your portal a custom feel. After the question mark at the end of the dashboard URL, add `:embed=y&amp;:toolbar=n`
