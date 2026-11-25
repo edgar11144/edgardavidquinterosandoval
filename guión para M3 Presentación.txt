@@ -1,0 +1,52 @@
+El instructivo pide enfocarte en el contexto que agregaste. Te saltas # Datos.
+
+[0:00–0:30] Apertura
+
+"La pregunta del proyecto es cuánto mejora el pronóstico cuando el modelo sabe qué pasa alrededor de la serie. En el M2 traté Semana Santa y Año Nuevo como outliers y los borré a mano. En el M3 el modelo aprende su efecto con regresores de calendario."
+
+[0:30–1:30] Diapositivas "Calendario y regresores" → "Evidencia"
+
+"Construí un calendario con los festivos oficiales de la Ley Federal del Trabajo más Jueves y Viernes Santo. De ahí saqué las horas de venta de cada semana con el horario de la tienda. Probé cinco efectos comparando cada semana contra la mediana de sus 9 vecinas: Semana Santa baja 27%, la cuesta de enero 23%, diciembre sube hasta 57%. La quincena no tuvo efecto y la descarté. Las semanas con un festivo entre semana venden 9% menos."
+
+[1:30–2:30] "Elección de K" → "Selección de regresores"
+
+"Para la estacionalidad usé términos de Fourier, que suman ondas para dibujar el patrón anual y aceptan el periodo real de 52.18 semanas. Elegí K = 8 por AICc. Después comparé conjuntos de regresores con AICc y ganó el mínimo: horas abiertas, cuesta de enero y el evento. Semana Santa resultó redundante: son dos días cerrados, 18 horas por 1.7%, unos 26%, casi la caída que vimos. Navidad ya la capturan los Fourier."
+
+[2:30–3:00] "Verificación: M2 + regresores"
+
+"También probé ponerle regresores a mi modelo del M2. No sirvió: la STL se come la cuesta de enero como si fuera estacionalidad, y el regresor deja de ser significativo. Por eso hay que estimar todo junto, con Fourier."
+
+[3:00–4:15] "Validación cruzada" → "MAPE" → "Desempate"
+
+"Comparé 9 modelos con validación cruzada: 44 folds de 12 semanas con ventana creciente. Sin regresores, mi modelo del M2 saca 15.4%, prácticamente igual al benchmark. Con contexto, baja a 13%. En las semanas de agosto a octubre, las del concurso, baja de 14.8% a 12.1%. La DHR en log y la combinación empataban en el promedio; desempaté con el error en agosto a octubre, donde ganó la combinación."
+
+Si alguien pregunta por los warnings rojos de esa diapositiva: "Es el SNAIVE redondeando 52.18 a 52, uno por fold. El instructivo pedía no ocultarlos."
+
+
+[4:15–5:00] "Gráfica del pronóstico" → "Conclusiones"
+
+"El modelo final promedia una DHR en log y otra en pesos. Se ve el efecto del 16 de septiembre: la W38 baja a 77 mil. Mi conclusión: el modelo no necesitaba que le quitara las semanas raras, necesitaba saber por qué eran raras."
+
+4. Preguntas probables y cómo responderlas
+
+"¿Por qué K = 8 y no más?"
+
+"Por AICc, que castiga los parámetros de más. Con más K la curva empieza a copiar el ruido de años específicos. K = 8 tuvo el menor AICc en log y en pesos."
+
+"¿Cómo sabes los valores futuros de los regresores?"
+
+"Son de calendario: el 16 de septiembre es festivo por ley. Por eso el pronóstico es ex ante sin tener que pronosticar ningún regresor."
+
+"¿Qué diferencia hay entre los residuales de regresión y los de innovación?"
+
+"Los de regresión son lo que no explican los regresores; tienen tendencia y autocorrelación, y eso lo modela el ARIMA. Los de innovación son lo que no explica nada del modelo, y esos son los que deben ser ruido blanco."
+
+"El Ljung-Box rechaza, ¿no es un problema?"
+
+"Queda algo de autocorrelación en rezagos aislados, probablemente estacionalidad que K = 8 no captura del todo. Afecta sobre todo a los intervalos; el pronóstico puntual lo evalué con validación cruzada."
+
+"¿Por qué ARIMA(0,1,1)?"
+
+"R lo eligió automáticamente con todos los datos, y lo fijé en la validación cruzada para que no tardara. Es el mismo orden de mi modelo del M2."
+
+Un consejo para mañana: presenta con la tecla S abierta. Ahí ves tus notas y el reloj, y todo lo de este guion está en las notas de cada diapositiva.
